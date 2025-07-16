@@ -21,3 +21,20 @@ function sendeAnfrage(event) {
     return false;
   }
 
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const burger = document.getElementById("burger");
+    const nav = document.getElementById("nav-links");
+  
+    burger.addEventListener("click", function () {
+      nav.classList.toggle("active");
+    });
+  
+    // Menü schließt, wenn Link angeklickt wird
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        nav.classList.remove('active');
+      });
+    });
+  });
+  
