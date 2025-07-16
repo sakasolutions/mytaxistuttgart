@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="bH4wX1kJUivPmujnYfd072-RCkjTxy5NaV9McCrxLDc" />
+  <title>MyTaxiStuttgart – Fahrdienst buchen</title>
+  <meta name="description" content="Taxi buchen in Stuttgart – Schnell, einfach und zuverlässig mit MyTaxiStuttgart. Jetzt Fahrt oder Krankenfahrt reservieren.">
+  <meta name="author" content="Vedat Öztürk">
+  <meta name="robots" content="index, follow">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="logo">
+      <!-- Optional: <img src="logo.png" alt="Logo"> -->
+      <span>MyTaxiStuttgart</span>
+    </div>
+    <nav class="main-nav">
+      <a href="#start">Start</a>
+      <a href="#service">Service</a>
+      <a href="#anfrage">Anfrage</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#impressum">Impressum</a>
+      <a href="#datenschutz">Datenschutz</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Der Rest der Seite bleibt wie gehabt -->
+
+      
+
+<section id="start" class="hero">
+    <div class="hero-content">
+      <p class="intro-text">Dein Experte für Taxi- und Flughafentransfer in Stuttgart. Wir bringen dich zuverlässig und pünktlich ans Ziel – in Stuttgart und Umgebung.</p>
+      <h2>Willkommen bei <span>MyTaxiStuttgart</span></h2>
+    </div>
+  </section>
+  
+
+  <section id="service" class="service-section">
+    <h2>Unser Service für Sie</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="emoji">🚖</div>
+        <p>Personenbeförderung</p>
+      </div>
+      <div class="card">
+        <div class="emoji">✈️</div>
+        <p>Flughafentransfer</p>
+      </div>
+      <div class="card">
+        <div class="emoji">🚑</div>
+        <p>Krankenfahrten & Transporte</p>
+      </div>
+      <div class="card">
+        <div class="emoji">📦</div>
+        <p>Kurierfahrten</p>
+      </div>
+      <div class="card">
+        <div class="emoji">🧑‍✈️</div>
+        <p>Chauffeurdienste</p>
+      </div>
+      <div class="card">
+        <div class="emoji">🚕</div>
+        <p>Taxi Service</p>
+      </div>
+    </div>
+  </section>
+  
+  
+  
+  
+
+<section id="anfrage">
+  <h2>Anfrage senden</h2>
+  <form id="anfrageForm" onsubmit="return sendeAnfrage(event)">
+    <label for="startadresse">Startadresse:</label>
+    <input type="text" id="startadresse" required>
+
+    <label for="zieladresse">Zieladresse:</label>
+    <input type="text" id="zieladresse" required>
+
+    <label for="datum">Datum:</label>
+    <input type="date" id="datum" required>
+
+    <label for="uhrzeit">Uhrzeit:</label>
+    <input type="time" id="uhrzeit" required>
+
+    <div class="radio-group-vertical">
+        <label class="radio-option">
+          <input type="radio" name="versand" value="whatsapp" checked>
+          <span>WhatsApp</span>
+        </label>
+        <label class="radio-option">
+          <input type="radio" name="versand" value="email">
+          <span>E-Mail</span>
+        </label>
+      </div>
+      
+      
+      
+
+    <button type="submit">Anfrage senden</button>
+  </form>
+  <p id="ausgabe"></p>
+
+  <div class="zahlungsarten">
+    <h3>Wir akzeptieren folgende Zahlungsmethoden:</h3>
+    <img src="https://i.ibb.co/W493YLLP/Bildschirmfoto-2025-07-14-um-15-31-58.png" alt="Zahlungsmethoden">
+  </div>
+</section>
+
+<section id="kontakt">
+    <h2>Kontakt</h2>
+    <div class="kontakt-box">
+      <div class="kontakt-item">
+        <span class="icon">📍</span>
+        <span class="text">Oberdorfstraße 53, 70771 Leinfelden-Echterdingen</span>
+      </div>
+      <div class="kontakt-item">
+        <span class="icon">📞</span>
+        <a class="text" href="tel:017684229016">0176 84229016</a>
+      </div>
+      <div class="kontakt-item">
+        <span class="icon">✉️</span>
+        <a class="text" href="mailto:taxi.info@mail.de">taxi.info@mail.de</a>
+      </div>
+    </div>
+  </section>
+  
+
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>© 2025 MyTaxiStuttgart</p>
+      <nav class="footer-nav">
+        <a href="datenschutz.html" target="_blank">Datenschutz</a>
+        <span class="divider">|</span>
+        <a href="impressum.html" target="_blank">Impressum</a>
+      </nav>
+    </div>
+  </footer>
+  
+
+<script src="main.js"></script>
+</body>
+</html>
+
