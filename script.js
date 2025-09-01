@@ -77,7 +77,8 @@ document.getElementById("taxi-form").addEventListener("submit", function (e) {
 
 
 
-// Helper-Funktion zur sauberen Leerzeichen-Prüfung
+
+
 function isEmpty(value) {
   return !value || value.replace(/\s/g, "") === "";
 }
@@ -87,27 +88,34 @@ document.getElementById("anfrage-form").addEventListener("submit", function (e) 
 
   const start = document.getElementById("startadresse").value;
   const ziel = document.getElementById("zieladresse").value;
-  const datum = document.getElementById("datum").value;
-  const uhrzeit = document.getElementById("uhrzeit").value;
+  const datumRaw = document.getElementById("fahrt-datum").value;
+  const uhrzeit = document.getElementById("fahrt-uhrzeit").value;
 
-  // Robuste Validierung
-  if (isEmpty(start) || isEmpty(ziel) || isEmpty(datum) || isEmpty(uhrzeit)) {
+  if (isEmpty(start) || isEmpty(ziel) || isEmpty(datumRaw) || isEmpty(uhrzeit)) {
     alert("Bitte alle Felder korrekt ausfüllen.");
     return;
   }
 
-  // WhatsApp-Nachricht formatieren
+  // Format: Mittwoch, 10.09.2025
+  const datumObj = new Date(datumRaw);
+  const wochentage = ["Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag"];
+  const tag = datumObj.getDate().toString().padStart(2, '0');
+  const monat = (datumObj.getMonth() + 1).toString().padStart(2, '0');
+  const jahr = datumObj.getFullYear();
+  const wochentag = wochentage[datumObj.getDay()];
+  const datumFormatiert = `${wochentag}, ${tag}.${monat}.${jahr}`;
+
+  // WhatsApp Nachricht
   const nachricht =
-    `🚖 *Taxi Anfrage*\n` +
-    `📍 Start: ${start.trim()}\n` +
-    `📍 Ziel: ${ziel.trim()}\n` +
-    `📅 Datum: ${datum}\n` +
+    `📩 *Taxi Anfrage*\n` +
+    `🚕 Start: ${start.trim()}\n` +
+    `🎯 Ziel: ${ziel.trim()}\n` +
+    `📅 Datum: ${datumFormatiert}\n` +
     `⏰ Uhrzeit: ${uhrzeit}`;
 
-  // WhatsApp Zielnummer (DE ohne + oder 0)
   const telefonnummer = "4915128500947";
   const url = `https://wa.me/${telefonnummer}?text=${encodeURIComponent(nachricht)}`;
 
-  // Weiterleitung zu WhatsApp
   window.open(url, "_blank");
 });
+
