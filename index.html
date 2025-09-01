@@ -1,159 +1,189 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="google-site-verification" content="bH4wX1kJUivPmujnYfd072-RCkjTxy5NaV9McCrxLDc" />
-  <title>MyTaxiStuttgart – Fahrdienst buchen</title>
-  <meta name="description" content="Taxi buchen in Stuttgart – Schnell, einfach und zuverlässig mit MyTaxiStuttgart. Jetzt Fahrt oder Krankenfahrt reservieren.">
-  <meta name="author" content="Vedat Öztürk">
-  <meta name="robots" content="index, follow">
-  <link rel="icon" href="favicon.ico" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Taxi Stuttgart | Ihr zuverlässiger Fahrdienst & Flughafentransfer</title>
+    <meta name="description" content="Buchen Sie Ihr Taxi in Stuttgart. Pünktlich, sicher und zum fairen Preis. Wir sind Ihr Experte für Stadtfahrten, Flughafentransfer und Krankenfahrten. 24/7 erreichbar.">
+    <meta name="keywords" content="Taxi Stuttgart, Flughafentransfer Stuttgart, Taxi, MyTaxiStuttgart, Fahrdienst Stuttgart, Krankenfahrt Stuttgart">
+    <meta name="author" content="MyTaxiStuttgart">
+    <link rel="canonical" href="https://www.mytaxistuttgart.de"> 
+    <meta property="og:title" content="Taxi Stuttgart | Ihr zuverlässiger Fahrdienst & Flughafentransfer">
+    <meta property="og:description" content="Pünktlich, sicher und zum fairen Preis. Wir sind Ihr Experte für Stadtfahrten, Flughafentransfer und Krankenfahrten.">
+    <meta property="og:image" content="https://www.mytaxistuttgart.de/assets/img/hero.png"> 
+    <meta property="og:url" content="https://www.mytaxistuttgart.de">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="de_DE">
+
+    <link rel="preload" href="assets/fonts/Poppins-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header class="site-header">
-        <div class="container">
-          <div class="logo">
-            <img src="https://img.freepik.com/vektoren-kostenlos/karierter-kreis-taxi-rahmen_78370-3172.jpg?semt=ais_hybrid&w=740" alt="Logo">
-            MyTaxiStuttgart
-          </div>
-      
-          <button class="burger" id="burger" aria-label="Menü öffnen">
-            ☰
-          </button>
-      
-          <nav class="main-nav" id="main-nav">
-            <a href="#start">Start</a>
-            <a href="#service">Service</a>
-            <a href="#anfrage">Anfrage</a>
-            <a href="impressum.html" target="_blank">Impressum</a>
-            <a href="datenschutz.html" target="_blank">Datenschutz</a>
-          </nav>
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="#" class="logo">MyTaxiStuttgart</a>
+
+      <!-- NAV -->
+      <nav class="main-nav" id="main-nav" role="navigation" aria-label="Hauptnavigation">
+        <a href="#start" class="nav-link">Start</a>
+        <a href="#service" class="nav-link">Unser Service</a>
+        <a href="#anfrage" class="nav-link">Anfrage</a>
+        <a href="#kontakt" class="nav-link">Kontakt</a>
+      </nav>
+
+      <!-- BURGER -->
+      <button class="burger-menu" id="burger-menu" aria-label="Menü öffnen" aria-controls="main-nav" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- OVERLAY -->
+  <div class="nav-overlay" id="nav-overlay" hidden></div>
+
+  <main>
+    <section id="start" class="hero">
+      <div class="hero-background"></div>
+      <div class="container hero-content">
+        <div class="hero-text">
+          <h1 class="main-headline">
+            <span class="line1">Taxi in Stuttgart</span>
+            <span class="line2">Pünktlich & Zuverlässig</span>
+          </h1>
+          <p class="sub-headline">
+            Ihr professioneller Partner für <strong>Flughafentransfer, Stadt- und Krankenfahrten</strong>. Steigen Sie ein, wir bringen Sie sicher an Ihr Ziel in Stuttgart und Umgebung.
+          </p>
+          <a href="#anfrage" class="cta-button">Jetzt Taxi anfragen</a>
         </div>
-      </header>
-      
+      </div>
+    </section>
+
+
+    
+    <section id="service" class="services-section">
+      <div class="container">
+        <h2 class="section-title">Unser Service für Sie</h2>
+        <div class="services-grid">
+          <div class="service-card" style="background-image: url('assets/img/personenbeforderung.png');">
+            <div class="service-content">
+              <h3>Personenbeförderung</h3>
+              <p>Wir bringen Sie sicher und pünktlich an Ihr Ziel – in Stuttgart und Umgebung.</p>
+            </div>
+          </div>
+          <div class="service-card" style="background-image: url('assets/img/flughafentransfer.png');">
+            <div class="service-content">
+              <h3>Flughafentransfer</h3>
+              <p>Entspannt zum Flughafen – zuverlässig, komfortabel und stressfrei.</p>
+            </div>
+          </div>
+          <div class="service-card" style="background-image: url('assets/img/krankentransport.png');">
+            <div class="service-content">
+              <h3>Krankenfahrten & Transporte</h3>
+              <p>Fahrten zu Arztterminen, Therapien und Kliniken – mit Fürsorge.</p>
+            </div>
+          </div>
+          <div class="service-card" style="background-image: url('assets/img/kurierfahrten.png');">
+            <div class="service-content">
+              <h3>Kurierfahrten</h3>
+              <p>Schnelle und sichere Lieferung von Dokumenten und Paketen.</p>
+            </div>
+          </div>
+          <div class="service-card" style="background-image: url('assets/img/chauffeurdienste.png');">
+            <div class="service-content">
+              <h3>Chauffeurdienste</h3>
+              <p>Diskret, stilvoll und professionell für jeden Anlass.</p>
+            </div>
+          </div>
+          <div class="service-card" style="background-image: url('assets/img/taxi-service.png');">
+            <div class="service-content">
+              <h3>Taxi Service</h3>
+              <p>Ihr zuverlässiges Taxi in Stuttgart – rund um die Uhr verfügbar.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <!-- Taxi Preisrechner Sektion (ohne Google Maps) -->
+<section id="preisrechner" class="preisrechner-section">
+  <div class="container">
+    <h2 class="section-title">Taxi Preisrechner Stuttgart</h2>
+    <p class="section-subtitle">
+      Geben Sie die ungefähre Strecke in Kilometern ein – wir berechnen den erwarteten Fahrpreis gemäß dem offiziellen Stuttgarter Taxitarif.
+    </p>
+
+    <form id="taxi-form" class="taxi-form">
+      <div class="input-group">
+        <label for="kilometer">Strecke in km</label>
+        <input type="number" id="kilometer" placeholder="z. B. 12.5" min="0.1" step="0.1" required />
+      </div>
+
+      <div class="input-group">
+        <label for="uhrzeit">Uhrzeit der Fahrt</label>
+        <input type="time" id="uhrzeit" required />
+      </div>
       
 
-<!-- Der Rest der Seite bleibt wie gehabt -->
+      <button type="submit" class="calculate-button">Preis berechnen</button>
+    </form>
 
-      
-
-<section id="start" class="hero">
-    <div class="hero-content">
-      <p class="intro-text">Dein Experte für Taxi- und Flughafentransfer in Stuttgart. Wir bringen dich zuverlässig und pünktlich ans Ziel – in Stuttgart und Umgebung.</p>
-      <h2>Willkommen bei <span>MyTaxiStuttgart</span></h2>
+    <div id="ergebnis" class="ergebnis-box" hidden>
+      <h3>Fahrtinformationen</h3>
+      <p><strong>Strecke:</strong> <span id="distanz">–</span></p>
+      <p><strong>Tarif:</strong> <span id="tarif">–</span></p>
+      <p><strong>Geschätzter Fahrpreis:</strong> <span id="preis">–</span></p>
     </div>
-  </section>
-  
+    
+    <p class="preis-hinweis">
+      Hinweis: Der berechnete Fahrpreis dient ausschließlich zur Orientierung. Verbindlich sind die Preise laut geltendem Taxitarif der Stadt Stuttgart. Abweichungen durch Wartezeiten, Umwege oder Zuschläge (z. B. Großraumtaxi) sind möglich.
+    </p>
+    
 
-  <section id="service" class="service-section">
-    <h2>Unser Service für Sie</h2>
-    <div class="cards">
-      <div class="card">
-        <div class="emoji">🚖</div>
-        <p>Personenbeförderung</p>
+    <section class="anfrage-section" id="anfrage">
+      <div class="container">
+        <h2>Anfrage senden</h2>
+        <form id="anfrage-form">
+          <div class="input-group">
+            <label for="startadresse">Startadresse:</label>
+            <input type="text" id="startadresse" required />
+          </div>
+          <div class="input-group">
+            <label for="zieladresse">Zieladresse:</label>
+            <input type="text" id="zieladresse" required />
+          </div>
+          <div class="input-group">
+            <label for="datum">Datum:</label>
+            <input type="date" id="datum" required />
+          </div>
+          <div class="input-group">
+            <label for="uhrzeit">Uhrzeit:</label>
+            <input type="time" id="uhrzeit" required />
+          </div>
+    
+          <button type="submit" class="primary-button">Anfrage senden</button>
+        </form>
+    
+        <p class="form-hinweis">
+          Hinweis: Der übermittelte Fahrpreis ist unverbindlich und dient lediglich zur Orientierung. Verbindlich sind ausschließlich die Preise laut Stuttgarter Taxitarif.
+        </p>
       </div>
-      <div class="card">
-        <div class="emoji">✈️</div>
-        <p>Flughafentransfer</p>
-      </div>
-      <div class="card">
-        <div class="emoji">🚑</div>
-        <p>Krankenfahrten & Transporte</p>
-      </div>
-      <div class="card">
-        <div class="emoji">📦</div>
-        <p>Kurierfahrten</p>
-      </div>
-      <div class="card">
-        <div class="emoji">🧑‍✈️</div>
-        <p>Chauffeurdienste</p>
-      </div>
-      <div class="card">
-        <div class="emoji">🚕</div>
-        <p>Taxi Service</p>
-      </div>
-    </div>
-  </section>
-  
-  
-  
-  
+    </section>
+    
+    
 
-<section id="anfrage">
-  <h2>Anfrage senden</h2>
-  <form id="anfrageForm" onsubmit="return sendeAnfrage(event)">
-    <label for="startadresse">Startadresse:</label>
-    <input type="text" id="startadresse" required>
 
-    <label for="zieladresse">Zieladresse:</label>
-    <input type="text" id="zieladresse" required>
 
-    <label for="datum">Datum:</label>
-    <input type="date" id="datum" required>
-
-    <label for="uhrzeit">Uhrzeit:</label>
-    <input type="time" id="uhrzeit" required>
-
-    <div class="radio-group-vertical">
-        <label class="radio-option">
-          <input type="radio" name="versand" value="whatsapp" checked>
-          <span>WhatsApp</span>
-        </label>
-        <label class="radio-option">
-          <input type="radio" name="versand" value="email">
-          <span>E-Mail</span>
-        </label>
-      </div>
-      
-      
-      
-
-    <button type="submit">Anfrage senden</button>
-  </form>
-  <p id="ausgabe"></p>
-
-  <div class="zahlungsarten">
-    <h3>Wir akzeptieren folgende Zahlungsmethoden:</h3>
-    <img src="https://i.ibb.co/W493YLLP/Bildschirmfoto-2025-07-14-um-15-31-58.png" alt="Zahlungsmethoden">
-  </div>
 </section>
 
-<section id="kontakt">
-    <h2>Kontakt</h2>
-    <div class="kontakt-box">
-      <div class="kontakt-item">
-        <span class="icon">📍</span>
-        <span class="text">Oberdorfstraße 53, 70771 Leinfelden-Echterdingen</span>
-      </div>
-      <div class="kontakt-item">
-        <span class="icon">📞</span>
-        <a class="text" href="tel:017684229016">0176 84229016</a>
-      </div>
-      <div class="kontakt-item">
-        <span class="icon">✉️</span>
-        <a class="text" href="mailto:taxi.info@mail.de">taxi.info@mail.de</a>
-      </div>
-    </div>
-  </section>
-  
 
-  <footer class="site-footer">
-    <div class="footer-content">
-      <p>© 2025 MyTaxiStuttgart</p>
-      <nav class="footer-nav">
-        <a href="datenschutz.html" target="_blank">Datenschutz</a>
-        <span class="divider">|</span>
-        <a href="impressum.html" target="_blank">Impressum</a>
-      </nav>
-    </div>
-  </footer>
-  
 
-<script src="main.js"></script>
+
+  </main>
+
+  <script src="script.js"></script>
+
 </body>
 </html>
-
