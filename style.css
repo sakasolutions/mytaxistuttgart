@@ -2,35 +2,31 @@
 @font-face {
   font-family: 'Poppins';
   src: url('assets/fonts/Poppins-SemiBold.woff2') format('woff2');
-  font-weight: 600; /* SemiBold */
+  font-weight: 600;
   font-style: normal;
-  font-display: swap; /* Sorgt für schnelle Textanzeige */
+  font-display: swap;
 }
-
 @font-face {
   font-family: 'Poppins';
   src: url('assets/fonts/Poppins-ExtraBold.woff2') format('woff2');
-  font-weight: 800; /* ExtraBold */
+  font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Roboto Condensed';
   src: url('assets/fonts/Roboto_Condensed-Regular.woff2') format('woff2');
-  font-weight: 400; /* Regular */
+  font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-
 @font-face {
   font-family: 'Roboto Condensed';
   src: url('assets/fonts/Roboto_Condensed-Bold.woff2') format('woff2');
-  font-weight: 700; /* Bold */
+  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
-
 
 /* --- GRUNDEINSTELLUNGEN & VARIABLEN --- */
 :root {
@@ -39,589 +35,356 @@
   --text-light: #FFFFFF;
   --text-dark: #111111;
   --font-primary: 'Poppins', sans-serif;
-  --font-secondary: 'Roboto Condensed', sans-serif; /* Angepasst an deine Schriftart */
+  --font-secondary: 'Roboto Condensed', sans-serif;
 }
-
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: var(--font-secondary);
-  background-color: var(--dark-bg);
-  color: var(--text-light);
-  overflow-x: hidden; 
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-secondary); background-color: var(--dark-bg); color: var(--text-light); overflow-x: hidden; }
+.container { width: 90%; max-width: 1200px; margin: 0 auto; }
 
 /* --- HEADER & NAVIGATION --- */
-.site-header {
-  position: absolute;
-  width: 100%;
-  z-index: 1000;
-  padding: 20px 0;
-  animation: fadeInDown 1s ease-out;
-}
-.site-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.logo {
-  font-family: var(--font-primary);
-  font-weight: 700;
-  font-size: 1.8rem;
-  color: var(--text-light);
-  text-decoration: none;
-  letter-spacing: -0.5px;
-}
+.site-header { position: absolute; width: 100%; z-index: 1000; padding: 20px 0; animation: fadeInDown 1s ease-out; }
+.site-header .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-family: var(--font-primary); font-weight: 700; font-size: 1.8rem; color: var(--text-light); text-decoration: none; letter-spacing: -0.5px; }
 
-/* NAV DESKTOP (Basis) */
-.main-nav {
-  display: flex;
-  gap: 40px;
-  align-items: center;
-}
-
-/* Links als „Boxen“ beim Hover (statt Linien) */
-.main-nav a {
-  font-family: var(--font-primary);
-  font-weight: 600;
-  color: var(--text-light);
-  text-decoration: none;
-  font-size: 1.1rem;
-  position: relative;
-  transition: background-color .25s ease, color .25s ease, box-shadow .25s ease, transform .1s ease;
-  padding: .5rem .8rem;
-  border-radius: 10px;
-}
+/* NAV DESKTOP */
+.main-nav { display: flex; gap: 40px; align-items: center; }
+.main-nav a { font-family: var(--font-primary); font-weight: 600; color: var(--text-light); text-decoration: none; font-size: 1.1rem; position: relative; transition: background-color .25s ease, color .25s ease, box-shadow .25s ease, transform .1s ease; padding: .5rem .8rem; border-radius: 10px; }
 @media (min-width: 769px) {
-  .main-nav a:hover {
-    background-color: rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 4px 16px rgba(0,0,0,.25);
-    color: var(--text-light);
-    transform: translateY(-1px);
-  }
+  .main-nav a:hover { background-color: rgba(255,255,255,0.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 4px 16px rgba(0,0,0,.25); color: var(--text-light); transform: translateY(-1px); }
 }
 
 /* Burger standardmäßig aus */
-.burger-menu {
-  display: none;
-}
+.burger-menu { display: none; }
 
-/* MOBILE: Menü als Off-Canvas rechts + Overlay */
+/* MOBILE: Off-Canvas + Overlay */
 @media (max-width: 768px) {
   .main-nav {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh;
-    width: 80%;
-    max-width: 340px;
-    padding: 90px 24px 24px;
-    flex-direction: column;
-    gap: 18px;
-    background: rgba(17,17,17,0.98);
-    box-shadow: -12px 0 32px rgba(0,0,0,.45);
-    transform: translateX(100%);
-    transition: transform .3s ease;
-    z-index: 1100; /* über Overlay */
+    position: fixed; top: 0; right: 0; height: 100vh; width: 80%; max-width: 340px;
+    padding: 90px 24px 24px; flex-direction: column; gap: 18px;
+    background: rgba(17,17,17,0.98); box-shadow: -12px 0 32px rgba(0,0,0,.45);
+    transform: translateX(100%); transition: transform .3s ease; z-index: 1100;
   }
-  body.nav-open .main-nav {
-    transform: translateX(0);
-  }
-
-  .burger-menu {
-    display: inline-block;
-    background: none;
-    border: 0;
-    cursor: pointer;
-    z-index: 1200;
-  }
-  .burger-menu span {
-    display: block;
-    width: 28px;
-    height: 3px;
-    background-color: var(--text-light);
-    margin: 6px 0;
-    transition: transform .25s ease, opacity .25s ease;
-  }
-
-  /* kleine Touch-Ziele mobil */
-  .main-nav a {
-    font-size: 1.05rem;
-    width: 100%;
-    padding: .9rem 1rem;
-    border-radius: 12px;
-    background: rgba(255,255,255,0.04);
-  }
-  .main-nav a:active {
-    background: rgba(255,255,255,0.12);
-  }
+  body.nav-open .main-nav { transform: translateX(0); }
+  .burger-menu { display: inline-block; background: none; border: 0; cursor: pointer; z-index: 1200; }
+  .burger-menu span { display: block; width: 28px; height: 3px; background-color: var(--text-light); margin: 6px 0; transition: transform .25s ease, opacity .25s ease; }
+  .main-nav a { font-size: 1.05rem; width: 100%; padding: .9rem 1rem; border-radius: 12px; background: rgba(255,255,255,0.04); }
+  .main-nav a:active { background: rgba(255,255,255,0.12); }
 }
 
-/* Overlay hinter dem Off-Canvas Menü */
-.nav-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.5);
-  z-index: 1050;
-}
-
-/* Body, wenn Menü offen (Scroll lock) */
-body.nav-open {
-  overflow: hidden;
-}
+/* Overlay */
+.nav-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); z-index: 1050; }
+/* Scroll lock */
+body.nav-open { overflow: hidden; }
 
 /* --- HERO SECTION --- */
-.hero {
-  position: relative;
-  height: 100vh;
-  min-height: 700px;
-  display: flex; 
-  align-items: center;
+.hero { position: relative; height: 100vh; min-height: 700px; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; z-index: 0; }
+.hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: url('assets/img/hero.png') no-repeat center center/cover; filter: brightness(0.4) contrast(1.1); animation: zoomInBackground 20s infinite alternate ease-in-out; }
+/* Buttons im Hero nebeneinander */
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   justify-content: center;
-  overflow: hidden;
-  text-align: center;
-  z-index: 0;
 }
 
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  background: url('assets/img/hero.png') no-repeat center center/cover; /* Pfad zum Bild angepasst */
-  filter: brightness(0.4) contrast(1.1);
-  animation: zoomInBackground 20s infinite alternate ease-in-out;
+/* zweiter Button optisch differenzieren */
+.cta-button.secondary {
+  background-color: transparent;
+  color: var(--text-light);
+  border: 2px solid var(--primary-color);
 }
-
-/* --- DIAGONALE STREIFEN --- */
-.hero::before,
-.hero::after {
-  content: '';
-  position: absolute;
-  background-color: var(--primary-color);
-  z-index: -1;
-  opacity: 0.35;
-  height: 300px;
-  width: 150%;
-  transform-origin: center;
-}
-.hero::before {
-  top: 15%;
-  left: -25%;
-  transform: rotate(-15deg);
-  animation: slideStripe 1.5s ease-out 0.5s backwards;
-}
-.hero::after {
-  bottom: 15%;
-  left: -25%;
-  transform: rotate(-15deg);
-  animation: slideStripe 1.5s ease-out 0.5s backwards;
-}
-
-/* Rest der CSS-Datei bleibt identisch */
-.hero-content {
-  position: relative;
-  z-index: 10;
-}
-
-.main-headline {
-  font-family: var(--font-primary);
-  font-weight: 800;
-  font-size: 5rem;
-  line-height: 1.1;
-  margin-bottom: 25px;
-  text-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  animation: fadeInUp 1s ease-out 0.8s backwards;
-}
-
-.main-headline .line1 {
-  display: block;
-  font-size: 2.2rem;
-  color: var(--primary-color);
-  margin-bottom: 5px;
-}
-
-.main-headline .line2 {
-  display: block;
-}
-
-.sub-headline {
-  font-size: 1.3rem;
-  line-height: 1.6;
-  max-width: 600px;
-  margin: 0 auto 40px auto;
-  text-shadow: 0 3px 10px rgba(0,0,0,0.3);
-  animation: fadeInUp 1s ease-out 1s backwards;
-}
-
-.sub-headline strong {
-  font-weight: 700;
-}
-
-.cta-button {
-  display: inline-block;
+.cta-button.secondary:hover {
   background-color: var(--primary-color);
   color: var(--text-dark);
-  font-family: var(--font-primary);
-  font-weight: 700;
-  font-size: 1.2rem;
-  text-decoration: none;
-  padding: 18px 40px;
-  border-radius: 8px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: fadeInUp 1s ease-out 1.2s backwards;
 }
 
-.cta-button:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-}
 
+/* --- DIAGONALE STREIFEN --- */
+.hero::before, .hero::after { content: ''; position: absolute; background-color: var(--primary-color); z-index: -1; opacity: 0.35; height: 300px; width: 150%; transform-origin: center; }
+.hero::before { top: 15%; left: -25%; transform: rotate(-15deg); animation: slideStripe 1.5s ease-out 0.5s backwards; }
+.hero::after { bottom: 15%; left: -25%; transform: rotate(-15deg); animation: slideStripe 1.5s ease-out 0.5s backwards; }
+
+.hero-content { position: relative; z-index: 10; }
+.main-headline { font-family: var(--font-primary); font-weight: 800; font-size: 5rem; line-height: 1.1; margin-bottom: 25px; text-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: fadeInUp 1s ease-out 0.8s backwards; }
+.main-headline .line1 { display: block; font-size: 2.2rem; color: var(--primary-color); margin-bottom: 5px; }
+.main-headline .line2 { display: block; }
+.sub-headline { font-size: 1.3rem; line-height: 1.6; max-width: 600px; margin: 0 auto 40px auto; text-shadow: 0 3px 10px rgba(0,0,0,0.3); animation: fadeInUp 1s ease-out 1s backwards; }
+.sub-headline strong { font-weight: 700; }
+.cta-button { display: inline-block; background-color: var(--primary-color); color: var(--text-dark); font-family: var(--font-primary); font-weight: 700; font-size: 1.2rem; text-decoration: none; padding: 18px 40px; border-radius: 8px; transition: transform 0.3s ease, box-shadow 0.3s ease; animation: fadeInUp 1s ease-out 1.2s backwards; }
+.cta-button:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
 
 /* --- ANIMATIONEN --- */
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
+@keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+@keyframes zoomInBackground { from{transform:scale(1)} to{transform:scale(1.1)} }
+@keyframes slideStripe { from{opacity:0;transform:translateX(-100%) rotate(-15deg)} to{opacity:.35;transform:translateX(0) rotate(-15deg)} }
 
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes zoomInBackground {
-  from { transform: scale(1); }
-  to { transform: scale(1.1); }
-}
-
-@keyframes slideStripe {
-  from {
-      opacity: 0;
-      transform: translateX(-100%) rotate(-15deg);
-  }
-  to {
-      opacity: 0.35;
-      transform: translateX(0) rotate(-15deg);
-  }
-}
-
-
-/* --- RESPONSIVE DESIGN --- */
+/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-  .main-nav {
-     
-  }
-  
-  .burger-menu {
-      display: block; 
-      background: none; border: none; cursor: pointer;
-  }
-  .burger-menu span {
-      display: block; width: 28px; height: 3px; background-color: var(--text-light); margin: 6px 0;
-  }
-  
-  .main-headline {
-      font-size: 3.5rem;
-  }
-  .main-headline .line1 {
-      font-size: 1.6rem;
-  }
-  .sub-headline {
-      font-size: 1.1rem;
-  }
-
-  .hero::before, .hero::after {
-      height: 200px;
-  }
+  .burger-menu { display:block; background:none; border:none; cursor:pointer; }
+  .burger-menu span { display:block; width:28px; height:3px; background-color:var(--text-light); margin:6px 0; }
+  .main-headline { font-size: 3.5rem; }
+  .main-headline .line1 { font-size: 1.6rem; }
+  .sub-headline { font-size: 1.1rem; }
+  .hero::before, .hero::after { height: 200px; }
 }
-
 @media (max-width: 480px) {
-  .main-headline {
-      font-size: 2.8rem;
-  }
-  .main-headline .line1 {
-      font-size: 1.3rem;
-  }
-  .cta-button {
-      padding: 15px 30px;
-      font-size: 1.1rem;
-  }
+  .main-headline { font-size: 2.8rem; }
+  .main-headline .line1 { font-size: 1.3rem; }
+  .cta-button { padding: 15px 30px; font-size: 1.1rem; }
+  .hero::before, .hero::after { height: 150px; }
+}
 
-  .hero::before, .hero::after {
-      height: 150px;
-  }
+/* --- SERVICES --- */
+.services-section { padding: 100px 0; background-color: #ffffff; color: var(--text-light); text-align: center; }
+.section-title { font-family: var(--font-primary); font-size: 2.5rem; color: #111111; font-weight: 800; margin-bottom: 60px; animation: fadeInUp 1s ease-out backwards; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+.service-card { position: relative; height: 280px; border-radius: 16px; background-size: cover; background-position: center; overflow: hidden; cursor: pointer; transform: translateY(50px); opacity: 0; transition: transform 0.4s ease, opacity 0.4s ease; }
+.service-card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7)); z-index: 1; }
+.service-content { position: absolute; bottom: 20px; left: 20px; right: 20px; z-index: 2; text-align: left; }
+.service-content h3 { font-family: var(--font-primary); font-size: 1.4rem; margin-bottom: 10px; font-weight: 700; }
+.service-content p { font-size: 1rem; line-height: 1.4; }
+.service-card:hover { transform: scale(1.03); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+.service-card:hover::before { background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5)); }
+.service-card.visible { transform: translateY(0); opacity: 1; }
+
+/* GRID RESPONSIVE */
+@media (max-width: 1024px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .service-card { height: 220px; }
+  .service-content h3 { font-size: 1.2rem; }
+  .service-content p { font-size: 0.95rem; }
+}
+
+/* --- PREISRECHNER --- */
+.preisrechner-section { padding: 80px 0; background: #f8f8f8; text-align: center; }
+.section-subtitle { margin-bottom: 40px; font-size: 1.1rem; color: #444; }
+.taxi-form { max-width: 600px; margin: 0 auto 40px auto; display: flex; flex-direction: column; gap: 20px; }
+.input-group { text-align: left; margin-bottom: 20px; }
+.input-group label { font-weight: bold; display: block; margin-bottom: 6px; color: #111; }
+.input-group input { width: 100%; padding: 12px; font-size: 1rem; border-radius: 6px; border: 1px solid #ccc; }
+.calculate-button { padding: 14px; background-color: var(--primary-color); color: #000; font-weight: 700; font-size: 1rem; border: none; border-radius: 8px; cursor: pointer; transition: background-color 0.3s ease; }
+.calculate-button:hover { background-color: #e0a800; }
+.ergebnis-box { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.1); max-width: 600px; margin: 0 auto; text-align: left; color:#000; }
+.ergebnis-box h3 { margin-bottom: 15px; }
+.preis-hinweis { font-size: 0.85rem; color: #555; max-width: 600px; margin: 20px auto 0; text-align: center; line-height: 1.4; }
+
+/* ===== Anfrage: 80vh, Mitte, roter Hintergrund ===== */
+#anfrage { scroll-margin-top: 90px; }
+
+/* Vollbreite Section, 80vh hoch, zentriert */
+.anfrage-section {
+  background: #ffffff;        /* rot – kannst du danach ändern */
+  min-height: 80vh;           /* gefordert */
+  display: flex;              /* zentrieren */
+  align-items: center;        /* vertikal Mitte */
+  justify-content: center;    /* horizontal Mitte */
+  padding: 24px;              /* Rand innen, damit die Karte nicht klebt */
+}
+
+/* Formular-Container schlicht als Karte */
+.anfrage-wrapper {
+  width: 100%;
+  max-width: 760px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+  padding: 28px;
+  margin: 0;                  /* wichtig: keine zusätzlichen Außenabstände */
+}
+
+/* Überschrift neutral */
+.anfrage-section h2 {
+  text-align: center;
+  font-family: var(--font-primary);
+  font-weight: 800;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+/* Grid schlicht halten */
+.anfrage-form { display: grid; gap: 16px; }
+
+.anfrage-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 640px) { .anfrage-row { grid-template-columns: 1fr; } }
+
+/* Inputs neutral */
+.anfrage-section .input-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 700;
+  color: #222;
+}
+.anfrage-section .input-group input[type="text"],
+.anfrage-section .input-group input[type="date"],
+.anfrage-section .input-group input[type="time"] {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+  outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.anfrage-section .input-group input:focus {
+  border-color: #bdbdbd;
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+/* Button – nutze deine bestehende Klasse, nur minimal angleichen */
+.primary-button {
+  height: 48px;
+  font-weight: 800;
+  border-radius: 10px;
+  margin-top: 4px;
 }
 
 
-.services-section {
-  padding: 100px 0;
-  background-color: #ffffff;
-  color: var(--text-light);
+
+
+/* ===== Zahlungsarten (ein Bild statt einzelner Logos) ===== */
+.payment-accept {
+  margin-top: 32px;
   text-align: center;
 }
 
-.section-title {
-  font-family: var(--font-primary);
-  font-size: 2.5rem;
-  color:  #111111;
+.payment-title {
   font-weight: 800;
-  margin-bottom: 60px;
-  animation: fadeInUp 1s ease-out backwards;
-}
-
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
-
-.service-card {
-  position: relative;
-  height: 280px;
-  border-radius: 16px;
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  cursor: pointer;
-  transform: translateY(50px);
-  opacity: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
-.service-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.7));
-  z-index: 1;
-}
-
-.service-content {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  z-index: 2;
-  text-align: left;
-}
-
-.service-content h3 {
   font-family: var(--font-primary);
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-.service-content p {
+  color: #111;
+  margin-bottom: 16px;
   font-size: 1rem;
-  line-height: 1.4;
 }
 
-/* Hover-Effekt */
-.service-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-}
-
-.service-card:hover::before {
-  background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.5));
-}
-
-/* Sichtbar wenn in Viewport */
-.service-card.visible {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* RESPONSIVE */
-@media (max-width: 1024px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .service-card {
-    height: 220px;
-  }
-
-  .service-content h3 {
-    font-size: 1.2rem;
-  }
-
-  .service-content p {
-    font-size: 0.95rem;
-  }
+.payment-image img {
+  max-width: 100%;
+  height: auto;
+  display: inline-block;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
 }
 
 
-/* === Preisrechner Sektion (ohne Google Maps) === */
-.preisrechner-section {
+/* --- KONTAKTSECTION --- */
+.kontakt-section {
   padding: 80px 0;
   background: #f8f8f8;
   text-align: center;
-}
-
-.section-title {
-  font-family: var(--font-primary);
-  font-size: 2.4rem;
-  font-weight: 800;
-  margin-bottom: 20px;
   color: #111;
 }
 
-.section-subtitle {
+.kontakt-title {
+  font-family: var(--font-primary);
+  font-size: 2.5rem;
+  font-weight: 800;
   margin-bottom: 40px;
-  font-size: 1.1rem;
-  color: #444;
+  color: #111;
 }
 
-.taxi-form {
-  max-width: 600px;
-  margin: 0 auto 40px auto;
+.kontakt-box {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center;
 }
 
-.input-group {
-  text-align: left;
-}
-
-.input-group label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 6px;
+.kontakt-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
   color: #111;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-}
-
-.calculate-button {
-  padding: 14px;
-  background-color: var(--primary-color);
-  color: #000;
-  font-weight: 700;
-  font-size: 1rem;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.calculate-button:hover {
-  background-color: #e0a800;
-}
-
-.ergebnis-box {
-  background: #fff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: left;
-  color:#000;
-}
-
-.ergebnis-box h3 {
-  margin-bottom: 15px;
-}
-
-.preis-hinweis {
-  font-size: 0.85rem;
-  color: #555;
-  max-width: 600px;
-  margin: 20px auto 0;
-  text-align: center;
-  line-height: 1.4;
-}
-
-
-
-.anfrage-section {
-  background-color: #fff;
-  padding: 60px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.anfrage-section h2 {
-  text-align: center;
-  font-size: 2rem;
-  margin-bottom: 30px;
-}
-
-.input-group {
-  margin-bottom: 20px;
-}
-
-.input-group label {
-  display: block;
-  margin-bottom: 6px;
+  font-size: 1.2rem;
   font-weight: 600;
-  color: #111;
+  padding: 14px 24px;
+  border: 2px solid #ddd;
+  border-radius: 12px;
+  transition: all 0.25s ease;
+  width: fit-content;
 }
 
-.input-group input[type="text"],
-.input-group input[type="date"],
-.input-group input[type="time"] {
-  width: 100%;
-  padding: 10px 14px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
+.kontakt-item img {
+  width: 24px;
+  height: 24px;
 }
 
-.primary-button {
-  display: block;
-  width: 100%;
-  padding: 14px;
-  font-size: 1rem;
-  background-color: #007aff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+.kontakt-item:hover {
+  background-color: #fff;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
-.primary-button:hover {
-  background-color: #005ec1;
+.kontakt-item.whatsapp {
+  border-color: #25D366;
+  color: #25D366;
 }
 
-.form-hinweis {
-  font-size: 0.85rem;
-  color: #666;
-  margin-top: 20px;
+.kontakt-item.whatsapp:hover {
+  background-color: #25D366;
+  color: #fff;
+}
+
+.kontakt-item.whatsapp:hover img {
+  filter: brightness(0) invert(1);
+}
+
+@media (min-width: 768px) {
+  .kontakt-box {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+
+/* --- FOOTER --- */
+.site-footer {
+  background-color: #111;
+  color: #ccc;
+  padding: 30px 0;
+  font-size: 0.95rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.footer-left {
   text-align: center;
-  line-height: 1.4;
+}
+
+.footer-right {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+}
+
+.footer-right a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: var(--font-primary);
+  transition: color 0.2s ease;
+}
+
+.footer-right a:hover {
+  color: var(--primary-color);
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }

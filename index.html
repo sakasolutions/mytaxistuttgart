@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>Taxi Stuttgart | Ihr zuverlässiger Fahrdienst & Flughafentransfer</title>
-    <meta name="description" content="Buchen Sie Ihr Taxi in Stuttgart. Pünktlich, sicher und zum fairen Preis. Wir sind Ihr Experte für Stadtfahrten, Flughafentransfer und Krankenfahrten. 24/7 erreichbar.">
-    <meta name="keywords" content="Taxi Stuttgart, Flughafentransfer Stuttgart, Taxi, MyTaxiStuttgart, Fahrdienst Stuttgart, Krankenfahrt Stuttgart">
-    <meta name="author" content="MyTaxiStuttgart">
-    <link rel="canonical" href="https://www.mytaxistuttgart.de"> 
-    <meta property="og:title" content="Taxi Stuttgart | Ihr zuverlässiger Fahrdienst & Flughafentransfer">
-    <meta property="og:description" content="Pünktlich, sicher und zum fairen Preis. Wir sind Ihr Experte für Stadtfahrten, Flughafentransfer und Krankenfahrten.">
-    <meta property="og:image" content="https://www.mytaxistuttgart.de/assets/img/hero.png"> 
-    <meta property="og:url" content="https://www.mytaxistuttgart.de">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="de_DE">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="preload" href="assets/fonts/Poppins-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="style.css">
+  <title>Taxi Stuttgart | Ihr zuverlässiger Fahrdienst & Flughafentransfer</title>
+  <meta name="description" content="Buchen Sie Ihr Taxi in Stuttgart. Pünktlich, sicher und zum fairen Preis. Wir sind Ihr Experte für Stadtfahrten, Flughafentransfer und Krankenfahrten. 24/7 erreichbar.">
+  <meta name="keywords" content="Taxi Stuttgart, Flughafentransfer Stuttgart, Taxi, MyTaxiStuttgart, Fahrdienst Stuttgart, Krankenfahrt Stuttgart">
+  <meta name="author" content="MyTaxiStuttgart">
+  <link rel="canonical" href="https://www.mytaxistuttgart.de">
+  <meta property="og:title" content="Taxi Stuttgart | Ihr zuverlässiger Fahrdienst & Flughafentransfer">
+  <meta property="og:description" content="Pünktlich, sicher und zum fairen Preis. Wir sind Ihr Experte für Stadtfahrten, Flughafentransfer und Krankenfahrten.">
+  <meta property="og:image" content="https://www.mytaxistuttgart.de/assets/img/hero.png">
+  <meta property="og:url" content="https://www.mytaxistuttgart.de">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+
+  <link rel="preload" href="assets/fonts/Poppins-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header class="site-header" role="banner">
     <div class="container">
-      <a href="#" class="logo">MyTaxiStuttgart</a>
+      <!-- Logo verlinkt auf Start -->
+      <a href="#start" class="logo">MyTaxiStuttgart</a>
 
       <!-- NAV -->
       <nav class="main-nav" id="main-nav" role="navigation" aria-label="Hauptnavigation">
@@ -44,24 +45,28 @@
   <div class="nav-overlay" id="nav-overlay" hidden></div>
 
   <main>
-    <section id="start" class="hero">
-      <div class="hero-background"></div>
-      <div class="container hero-content">
-        <div class="hero-text">
-          <h1 class="main-headline">
-            <span class="line1">Taxi in Stuttgart</span>
-            <span class="line2">Pünktlich & Zuverlässig</span>
-          </h1>
-          <p class="sub-headline">
-            Ihr professioneller Partner für <strong>Flughafentransfer, Stadt- und Krankenfahrten</strong>. Steigen Sie ein, wir bringen Sie sicher an Ihr Ziel in Stuttgart und Umgebung.
-          </p>
-          <a href="#anfrage" class="cta-button">Jetzt Taxi anfragen</a>
-        </div>
+   <!-- HERO -->
+<section id="start" class="hero">
+  <div class="hero-background"></div>
+  <div class="container hero-content">
+    <div class="hero-text">
+      <h1 class="main-headline">
+        <span class="line1">Taxi in Stuttgart</span>
+        <span class="line2">Pünktlich & Zuverlässig</span>
+      </h1>
+      <p class="sub-headline">
+        Ihr professioneller Partner für <strong>Flughafentransfer, Stadt- und Krankenfahrten</strong>. Steigen Sie ein, wir bringen Sie sicher an Ihr Ziel in Stuttgart und Umgebung.
+      </p>
+      <div class="hero-buttons">
+        <a href="#anfrage" class="cta-button">Jetzt Taxi anfragen</a>
+        <a href="#preisrechner" class="cta-button secondary">Fahrpreis berechnen</a>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
 
-    
+    <!-- SERVICE -->
     <section id="service" class="services-section">
       <div class="container">
         <h2 class="section-title">Unser Service für Sie</h2>
@@ -105,79 +110,127 @@
         </div>
       </div>
     </section>
-    
-    
-    <!-- Taxi Preisrechner Sektion (ohne Google Maps) -->
-<section id="preisrechner" class="preisrechner-section">
-  <div class="container">
-    <h2 class="section-title">Taxi Preisrechner Stuttgart</h2>
-    <p class="section-subtitle">
-      Geben Sie die ungefähre Strecke in Kilometern ein – wir berechnen den erwarteten Fahrpreis gemäß dem offiziellen Stuttgarter Taxitarif.
-    </p>
 
-    <form id="taxi-form" class="taxi-form">
-      <div class="input-group">
-        <label for="kilometer">Strecke in km</label>
-        <input type="number" id="kilometer" placeholder="z. B. 12.5" min="0.1" step="0.1" required />
-      </div>
-
-      <div class="input-group">
-        <label for="uhrzeit">Uhrzeit der Fahrt</label>
-        <input type="time" id="uhrzeit" required />
-      </div>
-      
-
-      <button type="submit" class="calculate-button">Preis berechnen</button>
-    </form>
-
-    <div id="ergebnis" class="ergebnis-box" hidden>
-      <h3>Fahrtinformationen</h3>
-      <p><strong>Strecke:</strong> <span id="distanz">–</span></p>
-      <p><strong>Tarif:</strong> <span id="tarif">–</span></p>
-      <p><strong>Geschätzter Fahrpreis:</strong> <span id="preis">–</span></p>
-    </div>
-    
-    <p class="preis-hinweis">
-      Hinweis: Der berechnete Fahrpreis dient ausschließlich zur Orientierung. Verbindlich sind die Preise laut geltendem Taxitarif der Stadt Stuttgart. Abweichungen durch Wartezeiten, Umwege oder Zuschläge (z. B. Großraumtaxi) sind möglich.
-    </p>
-    
-
-    <section class="anfrage-section" id="anfrage">
+    <!-- PREISRECHNER -->
+    <section id="preisrechner" class="preisrechner-section">
       <div class="container">
-        <h2>Anfrage senden</h2>
-        <form id="anfrage-form">
+        <h2 class="section-title">Taxi Preisrechner Stuttgart</h2>
+        <p class="section-subtitle">
+          Geben Sie die ungefähre Strecke in Kilometern ein – wir berechnen den erwarteten Fahrpreis gemäß dem offiziellen Stuttgarter Taxitarif.
+        </p>
+
+        <form id="taxi-form" class="taxi-form">
           <div class="input-group">
-            <label for="startadresse">Startadresse:</label>
-            <input type="text" id="startadresse" required />
+            <label for="kilometer">Strecke in km</label>
+            <input type="number" id="kilometer" placeholder="z. B. 12.5" min="0.1" step="0.1" required>
           </div>
+
           <div class="input-group">
-            <label for="zieladresse">Zieladresse:</label>
-            <input type="text" id="zieladresse" required />
+            <label for="uhrzeit">Uhrzeit der Fahrt</label>
+            <input type="time" id="uhrzeit" required>
           </div>
-          <div class="input-group">
-            <label for="fahrt-datum">Datum:</label>
-            <input type="date" id="fahrt-datum" required />
-          </div>
-          <div class="input-group">
-            <label for="fahrt-uhrzeit">Uhrzeit:</label>
-            <input type="time" id="fahrt-uhrzeit" required />
-          </div>
-    
-          <button type="submit" class="primary-button">Anfrage senden</button>
+
+          <button type="submit" class="calculate-button">Preis berechnen</button>
         </form>
-    
-        <p class="form-hinweis">
-          Hinweis: Der übermittelte Fahrpreis ist unverbindlich und dient lediglich zur Orientierung. Verbindlich sind ausschließlich die Preise laut Stuttgarter Taxitarif.
+
+        <div id="ergebnis" class="ergebnis-box" hidden>
+          <h3>Fahrtinformationen</h3>
+          <p><strong>Strecke:</strong> <span id="distanz">–</span></p>
+          <p><strong>Tarif:</strong> <span id="tarif">–</span></p>
+          <p><strong>Geschätzter Fahrpreis:</strong> <span id="preis">–</span></p>
+        </div>
+
+        <p class="preis-hinweis">
+          Hinweis: Der berechnete Fahrpreis dient ausschließlich zur Orientierung. Verbindlich sind die Preise laut geltendem Taxitarif der Stadt Stuttgart. Abweichungen durch Wartezeiten, Umwege oder Zuschläge (z. B. Großraumtaxi) sind möglich.
         </p>
       </div>
     </section>
-    
-    
-    
+
+   <!-- ANFRAGE -->
+<section class="anfrage-section" id="anfrage">
+  <div class="container anfrage-wrapper">
+    <h2>Anfrage senden</h2>
+
+    <form id="anfrage-form" class="anfrage-form">
+      <div class="input-group">
+        <label for="startadresse">Startadresse</label>
+        <input type="text" id="startadresse" placeholder="z. B. Rotebühlplatz 1, 70178 Stuttgart" required>
+      </div>
+
+      <div class="input-group">
+        <label for="zieladresse">Zieladresse</label>
+        <input type="text" id="zieladresse" placeholder="z. B. Flughafen Stuttgart, Terminal 3" required>
+      </div>
+
+      <div class="anfrage-row">
+        <div class="input-group">
+          <label for="fahrt-datum">Datum</label>
+          <input type="date" id="fahrt-datum" required>
+        </div>
+        <div class="input-group">
+          <label for="fahrt-uhrzeit">Uhrzeit</label>
+          <input type="time" id="fahrt-uhrzeit" required>
+        </div>
+      </div>
+
+      <button type="submit" class="primary-button">Anfrage senden</button>
+    </form>
 
 
+   
+<!-- Zahlungsarten -->
+<div class="payment-accept">
+  <p class="payment-title">Wir akzeptieren folgende Zahlungsmethoden:</p>
+  <div class="payment-image">
+    <img src="https://i.ibb.co/W493YLLP/Bildschirmfoto-2025-07-14-um-15-31-58.png" 
+         alt="PayPal, Mastercard, VISA und American Express werden akzeptiert"
+         loading="lazy" width="600" height="200">
+  </div>
+</div>
 
+
+  </div>
 </section>
+
+
+ 
+<section id="kontakt" class="kontakt-section">
+  <div class="container">
+    <h2 class="kontakt-title">Kontakt</h2>
+    <div class="kontakt-box">
+      <a href="tel:+49176 84229016" class="kontakt-item">
+        <img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Telefon Icon" />
+        <span>+49 711 222 33 44</span>
+      </a>
+      <a href="mailto:taxi.info@mail.de" class="kontakt-item">
+        <img src="https://img.icons8.com/ios-filled/50/000000/email.png" alt="E-Mail Icon" />
+        <span>info@mytaxistuttgart.de</span>
+      </a>
+      <a href="https://wa.me/4917684229016" class="kontakt-item whatsapp" target="_blank" rel="noopener">
+        <img src="https://img.icons8.com/ios-filled/50/25D366/whatsapp.png" alt="WhatsApp Icon" />
+        <span>WhatsApp Nachricht</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-content">
+    <div class="footer-left">
+      <p>&copy; 2025 MyTaxiStuttgart – Alle Rechte vorbehalten</p>
+    </div>
+    <div class="footer-right">
+      <a href="#service">Service</a>
+      <a href="#anfrage">Anfrage</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="impressum.html" target="_blank" rel="noopener">Impressum</a>
+      <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutz</a>
+    </div>
+  </div>
+</footer>
 
 
 
@@ -185,6 +238,5 @@
   </main>
 
   <script src="script.js"></script>
-
 </body>
 </html>
