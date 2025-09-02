@@ -43,18 +43,40 @@ body { font-family: var(--font-secondary); background-color: var(--dark-bg); col
 .container { width: 90%; max-width: 1200px; margin: 0 auto; }
 
 /* --- HEADER & NAVIGATION --- */
-.site-header { position: absolute; width: 100%; z-index: 1000; padding: 20px 0; }
-.site-header .container { display: flex; justify-content: space-between; align-items: center; }
-.logo img {
-  height: 50px; /* Passen Sie die Höhe nach Bedarf an */
-  width: auto; /* Die Breite passt sich automatisch an */
-  display: block; /* Verhindert unerwünschte Leerräume */
+.site-header {
+  position: fixed; /* Ändern von 'absolute' auf 'fixed' */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 20px 0;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease; /* Übergang für den Effekt */
 }
 
+/* Neuer Zustand für den Header beim Scrollen */
+.site-header.scrolled {
+  background-color: rgba(17, 17, 17, 0.85); /* Dunkler Hintergrund mit Transparenz */
+  backdrop-filter: blur(10px); /* Moderner " Milchglas"-Effekt */
+  -webkit-backdrop-filter: blur(10px); /* Für Safari-Browser */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  padding: 15px 0; /* Header wird beim Scrollen etwas kompakter */
+}
+.site-header.scrolled .logo img {
+  height: 65px; /* Logo wird ebenfalls etwas kleiner */
+}
+
+.site-header .container { display: flex; justify-content: space-between; align-items: center; }
+
+.logo img {
+  height: 75px;
+  width: auto;
+  display: block;
+  transition: height 0.3s ease; /* Übergang für die Größenänderung */
+}
 
 /* NAV DESKTOP */
 .main-nav { display: flex; gap: 40px; align-items: center; }
-.main-nav a { font-family: var(--font-primary); font-weight: 600; color: var(--text-light); text-decoration: none; font-size: 1.1rem; position: relative; transition: all .25s ease; padding: .5rem .8rem; border-radius: 10px; }
+.main-nav a { font-family: var(--font-primary); font-weight: 600; color: var(--text-light); text-decoration: none; font-size: 1.25rem; position: relative; transition: all .25s ease; padding: .5rem .8rem; border-radius: 10px; }
 @media (min-width: 769px) {
   .main-nav a:hover { background-color: rgba(255,255,255,0.08); transform: translateY(-1px); }
 }
@@ -83,30 +105,85 @@ body { font-family: var(--font-secondary); background-color: var(--dark-bg); col
 /* Scroll lock */
 body.nav-open { overflow: hidden; }
 
-/* ===== DIE ENTSCHEIDENDE KORREKTUR ===== */
 /* Wenn das Menü offen ist, hebe den GANZEN Header über das Overlay */
 body.nav-open .site-header {
   z-index: 1100; /* Muss höher sein als der z-index vom Overlay (1050) */
 }
 
+/* --- ABSTAND FÜR FIXED HEADER --- */
+/* Fügt einen Platzhalter-Abstand hinzu, damit der Seiteninhalt nicht vom fixed Header überdeckt wird. */
+/* Die genaue Höhe sollte der Höhe des Headers entsprechen oder leicht darüber liegen. */
+body > main > section:first-of-type {
+  padding-top: 110px; /* Standardhöhe für Desktop. Wird später im JS dynamisch angepasst, aber gut als Fallback */
+}
 
 /* --- HERO SECTION --- */
 .hero { position: relative; height: 100vh; min-height: 700px; display: flex; align-items: center; justify-content: center; overflow: hidden; text-align: center; }
-.hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: url('assets/img/hero.png') no-repeat center center/cover; filter: brightness(0.4) contrast(1.1); animation: zoomInBackground 20s infinite alternate ease-in-out; }
-.hero-buttons { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
-.cta-button.secondary { background-color: transparent; color: var(--text-light); border: 2px solid var(--primary-color); }
-.cta-button.secondary:hover { background-color: var(--primary-color); color: var(--text-dark); }
-.hero::before, .hero::after { content: ''; position: absolute; background-color: var(--primary-color); z-index: -1; opacity: 0.35; height: 300px; width: 150%; transform-origin: center; }
-.hero::before { top: 15%; left: -25%; transform: rotate(-15deg); }
-.hero::after { bottom: 15%; left: -25%; transform: rotate(-15deg); }
-.hero-content { position: relative; }
+.hero-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; background: url('assets/img/hero.png') no-repeat center center/cover; filter: brightness(0.4) contrast(1.1); animation: zoomInBackground 20s infinite alternate ease-in-out; }
+
+/* Gelbe Streifen Container */
+.hero-stripes {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
+}
+
+/* Die Streifen selbst (pseudoelemente, für saubere Animation) */
+.hero-stripes::before, .hero-stripes::after {
+  content: '';
+  position: absolute;
+  background-color: var(--primary-color);
+  opacity: 0; /* Startet unsichtbar */
+  height: 300px;
+  width: 150%;
+  transform-origin: left center; /* Animationsursprung links */
+  transform: rotate(-15deg) scaleX(0); /* Startzustand (gedreht aber Breite 0) */
+}
+.hero-stripes::before { top: 30%; left: -25%; }
+.hero-stripes::after { bottom: 5%; left: -25%; }
+
+/* Keyframe-Animation für das "Wachsen" der Streifen */
+@keyframes growFromLeft {
+  from { transform: rotate(-15deg) scaleX(0); opacity: 0; }
+  50% { opacity: 0.35; }
+  to { transform: rotate(-15deg) scaleX(1); opacity: 0.35; }
+}
+
+/* Diese Klassen werden per JS hinzugefügt, um die Animationen zu starten */
+.hero-stripes.animate::before,
+.hero-stripes.animate::after {
+  animation: growFromLeft 1.2s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.hero-stripes.animate::after {
+  animation-delay: 0.1s; /* Leichte Verzögerung für den zweiten Streifen */
+}
+
+.hero-content { position: relative; z-index: 1; } /* Über den Streifen */
 .main-headline { font-family: var(--font-primary); font-weight: 800; font-size: 5rem; line-height: 1.1; margin-bottom: 25px; text-shadow: 0 5px 15px rgba(0,0,0,0.3); }
 .main-headline .line1 { display: block; font-size: 2.2rem; color: var(--primary-color); margin-bottom: 5px; }
 .main-headline .line2 { display: block; }
 .sub-headline { font-size: 1.3rem; line-height: 1.6; max-width: 600px; margin: 0 auto 40px auto; text-shadow: 0 3px 10px rgba(0,0,0,0.3); }
 .sub-headline strong { font-weight: 700; }
+.hero-buttons { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
 .cta-button { display: inline-block; background-color: var(--primary-color); color: var(--text-dark); font-family: var(--font-primary); font-weight: 700; font-size: 1.2rem; text-decoration: none; padding: 18px 40px; border-radius: 8px; transition: transform 0.3s ease, box-shadow 0.3s ease; }
 .cta-button:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+.cta-button.secondary { background-color: transparent; color: var(--text-light); border: 2px solid var(--primary-color); }
+.cta-button.secondary:hover { background-color: var(--primary-color); color: var(--text-dark); }
+
+
+/* Hero Text Animation - initialer Zustand */
+.reveal-text {
+  opacity: 0;
+  transform: translateY(20px);
+}
+/* Zustand, der die Animation auslöst (wird per JS hinzugefügt) */
+.reveal-text.animate {
+  animation: fadeInMoveUp 1s forwards cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Keyframe-Animation für Text und Buttons im Hero */
+@keyframes fadeInMoveUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 @keyframes zoomInBackground { from{transform:scale(1)} to{transform:scale(1.1)} }
 
 /* --- SERVICES --- */
@@ -119,6 +196,10 @@ body.nav-open .site-header {
 .service-content h3 { font-family: var(--font-primary); font-size: 1.4rem; margin-bottom: 10px; font-weight: 700; }
 .service-content p { font-size: 1rem; line-height: 1.4; }
 .service-card:hover { transform: scale(1.03); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+/* Animation für Service Cards */
+.service-card { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.service-card.visible { opacity: 1; transform: translateY(0); }
+
 @media (max-width: 1024px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 600px) { .services-grid { grid-template-columns: 1fr; } }
 
@@ -162,19 +243,68 @@ body.nav-open .site-header {
 .kontakt-item.whatsapp:hover img { filter: brightness(0) invert(1); }
 @media (min-width: 768px) { .kontakt-box { flex-direction: row; justify-content: center; } }
 
-/* --- FOOTER --- */
-.site-footer { background-color: #111; color: #ccc; padding: 30px 0; font-size: 0.95rem; }
-.footer-content { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 12px; }
-.footer-left { text-align: center; }
-.footer-right { display: flex; flex-wrap: wrap; gap: 18px; justify-content: center; }
-.footer-right a { color: #ccc; text-decoration: none; font-weight: 600; font-family: var(--font-primary); transition: color 0.2s ease; }
-.footer-right a:hover { color: var(--primary-color); }
-@media (min-width: 768px) { .footer-content { flex-direction: row; justify-content: space-between; } }
+/* --- FOOTER NEUGESTALTUNG --- */
+.site-footer {
+  background-color: #111;
+  color: #ccc;
+  padding: 50px 0; /* Mehr Innenabstand für mehr Höhe */
+  font-size: 0.95rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column; /* Alle Elemente untereinander anordnen */
+  align-items: center;     /* Horizontale Zentrierung */
+  text-align: center;
+  gap: 28px; /* Abstand zwischen den Elementen */
+}
+
+.footer-nav {
+  display: flex;
+  flex-direction: column; /* Navigations-Links untereinander */
+  gap: 12px; /* Abstand zwischen den Links */
+}
+
+.footer-nav a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: var(--font-primary);
+  transition: color 0.2s ease;
+}
+
+.footer-nav a:hover {
+  color: var(--primary-color);
+}
+
+.footer-credit {
+  margin-top: 10px; /* Etwas mehr Abstand nach oben */
+  font-size: 0.9rem;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-credit a {
+  display: inline-flex;
+  margin-left: 6px;
+}
+
+.footer-credit img {
+  height: 36px; /* Logo etwas vergrößert */
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.footer-credit a:hover img {
+  opacity: 1;
+}
 
 /* --- ANPASSUNGEN FÜR MOBILE GERÄTE --- */
 @media (max-width: 768px) {
   .main-headline {
-    font-size: 3.5rem; /* Verkleinert die Hauptüberschrift */
+    font-size: 3rem; /* Verkleinert die Hauptüberschrift */
   }
 
   .main-headline .line1 {
@@ -184,4 +314,15 @@ body.nav-open .site-header {
   .sub-headline {
     font-size: 1.15rem; /* Verkleinert optional auch den Untertitel */
   }
+}
+
+/* --- Allgemeine Scroll-Animation für Sektionen --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
