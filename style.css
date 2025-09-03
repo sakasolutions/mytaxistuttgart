@@ -302,23 +302,7 @@ body > main > section:first-of-type {
 }
 
 
-saka-credit {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-}
 
-.saka-credit img {
-  max-width: 150px;
-  height: auto;
-  margin-bottom: 5px;
-}
-
-.saka-credit span {
-  font-size: 0.9rem;
-  color: #666;
-}
 
 
 /* --- ANPASSUNGEN FÜR MOBILE GERÄTE --- */
