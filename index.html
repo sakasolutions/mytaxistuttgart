@@ -125,18 +125,33 @@
     <section id="preisrechner" class="preisrechner-section fade-in">
       <div class="container">
         <h2 class="section-title">Taxi Preisrechner Stuttgart</h2>
-        <p class="section-subtitle">Geben Sie die ungefähre Strecke in Kilometern ein – wir berechnen den erwarteten Fahrpreis gemäß dem offiziellen Stuttgarter Taxitarif.</p>
+        <p class="section-subtitle">Geben Sie Start und Ziel ein – wir berechnen die exakte Distanz und den voraussichtlichen Fahrpreis für Sie.</p>
+        
         <form id="taxi-form" class="taxi-form">
-          <div class="input-group"><label for="kilometer">Strecke in km</label><input type="number" id="kilometer" placeholder="z. B. 12.5" min="0.1" step="0.1" required></div>
-          <div class="input-group"><label for="uhrzeit">Uhrzeit der Fahrt</label><input type="time" id="uhrzeit" required></div>
+          <div class="input-group">
+            <label for="start-adresse-rechner">Startadresse</label>
+            <input type="text" id="start-adresse-rechner" placeholder="z. B. Schlossplatz 1, Stuttgart" required>
+          </div>
+          <div class="input-group">
+            <label for="ziel-adresse-rechner">Zieladresse</label>
+            <input type="text" id="ziel-adresse-rechner" placeholder="z. B. Flughafen Stuttgart" required>
+          </div>
+          
+          <div class="input-group">
+            <label for="uhrzeit">Uhrzeit der Fahrt</label>
+            <input type="time" id="uhrzeit" required>
+          </div>
+          
           <button type="submit" class="calculate-button">Preis berechnen</button>
         </form>
+        
         <div id="ergebnis" class="ergebnis-box" hidden>
           <h3>Fahrtinformationen</h3>
           <p><strong>Strecke:</strong> <span id="distanz">–</span></p>
           <p><strong>Tarif:</strong> <span id="tarif">–</span></p>
           <p><strong>Geschätzter Fahrpreis:</strong> <span id="preis">–</span></p>
         </div>
+        
         <p class="preis-hinweis">Hinweis: Der berechnete Fahrpreis dient ausschließlich zur Orientierung. Verbindlich sind die Preise laut geltendem Taxitarif der Stadt Stuttgart. Abweichungen durch Wartezeiten, Umwege oder Zuschläge (z. B. Großraumtaxi) sind möglich.</p>
       </div>
     </section>

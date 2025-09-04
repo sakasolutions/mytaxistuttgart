@@ -4,16 +4,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const heroSection = document.querySelector(".hero");
 
   if (header && heroSection) {
-    // Funktion zur Aktualisierung des Header-Paddings für die erste Sektion
     const updateHeroPadding = () => {
       const headerHeight = header.offsetHeight;
-      heroSection.style.paddingTop = `${headerHeight + 20}px`; // Headerhöhe + etwas Puffer
+      heroSection.style.paddingTop = `${headerHeight + 20}px`;
     };
-
-    // Initiales Padding setzen
     updateHeroPadding();
-
-    // Event Listener für Scroll-Effekt
     window.addEventListener("scroll", () => {
       if (window.scrollY > 50) {
         header.classList.add("scrolled");
@@ -21,8 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
         header.classList.remove("scrolled");
       }
     });
-
-    // Event Listener für Resize, um Padding anzupassen, falls Header-Höhe sich ändert (z.B. durch responsive Anpassungen)
     window.addEventListener("resize", updateHeroPadding);
   }
 
@@ -48,119 +41,140 @@ document.addEventListener("DOMContentLoaded", () => {
   nav?.addEventListener('click', (e) => {
     const link = e.target.closest('a.nav-link');
     if (!link) return;
-
     e.preventDefault();
     const href = link.getAttribute('href');
     const targetElement = document.querySelector(href);
     if (!targetElement) return;
-
     toggleNav(false);
-
-    // Etwas Verzögerung, damit die Navigationsschließ-Animation sichtbar ist
     setTimeout(() => {
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
-    }, 150); // Kann an die Dauer der Off-Canvas-Animation angepasst werden
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 150);
   });
 
   // --- Sanftes Scrollen für alle anderen Anker-Links (Desktop, Hero-Buttons etc.) ---
   document.addEventListener('click', (e) => {
-    if (e.target.closest('#main-nav')) return; // Klicks im mobilen Menü ignorieren
-
+    if (e.target.closest('#main-nav')) return;
     const link = e.target.closest('a[href^="#"]');
     if (!link) return;
-
     const href = link.getAttribute('href');
     const targetElement = document.querySelector(href);
     if (targetElement) {
       e.preventDefault();
-      targetElement.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   });
-
 
   // --- Hero Animation beim Laden der Seite ---
   const animatedHeroElements = document.querySelectorAll(".reveal-text");
   const heroStripes = document.querySelector(".hero-stripes");
-
-  // Stufenweise Animation der Textelemente im Hero-Bereich
   animatedHeroElements.forEach((el, index) => {
     el.style.animationDelay = `${0.2 + index * 0.2}s`;
     el.classList.add("animate");
   });
-
-  // Animation der Streifen mit einer festen Verzögerung starten
   if (heroStripes) {
     setTimeout(() => {
       heroStripes.classList.add("animate");
-    }, 400); // Startet, nachdem die ersten Textelemente erscheinen
+    }, 400);
   }
-
 
   // --- Service Cards: Klick scrollt zu Anfrage ---
   document.querySelectorAll(".service-card").forEach((card) => {
     card.addEventListener("click", () => {
       const anfrage = document.getElementById("anfrage");
       if (anfrage) anfrage.scrollIntoView({ behavior: "smooth", block: "start" });
-      toggleNav(false); // Mobile Nav schließen, falls offen
+      toggleNav(false);
     });
   });
 
   // --- Scroll-Animation für Service-Karten und andere Sektionen (Fade-in) ---
   const animatedSections = document.querySelectorAll(".fade-in, .service-card");
   if ("IntersectionObserver" in window && animatedSections.length) {
-    const observerOptions = {
-      root: null, // viewport als root
-      rootMargin: "0px",
-      threshold: 0.15 // 15% des Elements sichtbar
-    };
-
+    const observerOptions = { root: null, rootMargin: "0px", threshold: 0.15 };
     const sectionObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("visible");
-          observer.unobserve(entry.target); // Animation nur einmal abspielen
+          observer.unobserve(entry.target);
         }
       });
     }, observerOptions);
-
     animatedSections.forEach((el) => sectionObserver.observe(el));
   } else {
-    // Fallback für Browser, die IntersectionObserver nicht unterstützen
     animatedSections.forEach((el) => el.classList.add("visible"));
   }
 
+  // === GOOGLE PLACES & DIRECTIONS LOGIK (NEU & KOMBINIERT) ===
+  function initMap() {
+    // Felder für das Anfrageformular
+    const anfrageStartInput = document.getElementById("startadresse");
+    const anfrageZielInput = document.getElementById("zieladresse");
+    
+    // NEUE Felder für den Preisrechner
+    const rechnerStartInput = document.getElementById("start-adresse-rechner");
+    const rechnerZielInput = document.getElementById("ziel-adresse-rechner");
 
-  // === Preisrechner ===
+    const options = {
+      componentRestrictions: { country: "de" }, // Beschränkt die Suche auf Deutschland
+      fields: ["name", "geometry"],
+    };
+
+    // Autocomplete für Anfrageformular aktivieren
+    if (anfrageStartInput) new google.maps.places.Autocomplete(anfrageStartInput, options);
+    if (anfrageZielInput) new google.maps.places.Autocomplete(anfrageZielInput, options);
+    
+    // Autocomplete für Preisrechner aktivieren
+    if (rechnerStartInput) new google.maps.places.Autocomplete(rechnerStartInput, options);
+    if (rechnerZielInput) new google.maps.places.Autocomplete(rechnerZielInput, options);
+  }
+  // Macht die initMap Funktion global verfügbar
+  window.initMap = initMap;
+
+  // === Preisrechner (NEU mit Google Directions API) ===
   const form = document.getElementById("taxi-form");
   if (form) {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const km = parseFloat(document.getElementById("kilometer").value);
-      const uhrzeit = document.getElementById("uhrzeit").value;
-      if (isNaN(km) || km <= 0 || !uhrzeit) { alert("Bitte Kilometerzahl und Uhrzeit korrekt eingeben."); return; }
       
-      const grundpreis = 4.2; // Beispiel Grundpreis
-      const kmPreisTag = 2.5; // Beispiel Preis pro km Tag
-      const kmPreisNacht = 2.9; // Beispiel Preis pro km Nacht
+      const startAdresse = document.getElementById("start-adresse-rechner").value;
+      const zielAdresse = document.getElementById("ziel-adresse-rechner").value;
+      const uhrzeit = document.getElementById("uhrzeit").value;
 
-      const [hh] = uhrzeit.split(":").map((n) => parseInt(n, 10));
-      const nacht = hh >= 22 || hh < 6; // Nacht von 22:00 bis 05:59
+      if (!startAdresse || !zielAdresse || !uhrzeit) {
+        alert("Bitte Start, Ziel und Uhrzeit angeben.");
+        return;
+      }
 
-      const preis = grundpreis + km * (nacht ? kmPreisNacht : kmPreisTag);
+      const directionsService = new google.maps.DirectionsService();
+      directionsService.route({
+        origin: startAdresse,
+        destination: zielAdresse,
+        travelMode: 'DRIVING'
+      }, (response, status) => {
+        if (status === 'OK') {
+          const route = response.routes[0].legs[0];
+          const distanceInMeters = route.distance.value;
+          const km = distanceInMeters / 1000;
 
-      document.getElementById("distanz").textContent = `${km.toFixed(1)} km`;
-      document.getElementById("tarif").textContent = nacht ? "Nacht-/Feiertagstarif (Beispiel)" : "Tagestarif (Beispiel)";
-      document.getElementById("preis").textContent = `${preis.toFixed(2)} €`;
+          const grundpreis = 4.20;
+          const kmPreisTag = 2.50;
+          const kmPreisNacht = 2.90;
 
-      const box = document.getElementById("ergebnis");
-      box?.removeAttribute("hidden");
-      box?.scrollIntoView({ behavior: "smooth", block: "center" });
+          const [hh] = uhrzeit.split(":").map((n) => parseInt(n, 10));
+          const nacht = hh >= 22 || hh < 6;
+
+          const preis = grundpreis + km * (nacht ? kmPreisNacht : kmPreisTag);
+
+          document.getElementById("distanz").textContent = `${km.toFixed(1)} km (${route.duration.text})`;
+          document.getElementById("tarif").textContent = nacht ? "Nacht-/Feiertagstarif (Beispiel)" : "Tagestarif (Beispiel)";
+          document.getElementById("preis").textContent = `${preis.toFixed(2)} €`;
+
+          const box = document.getElementById("ergebnis");
+          box?.removeAttribute("hidden");
+          box?.scrollIntoView({ behavior: "smooth", block: "center" });
+        } else {
+          alert("Die Route konnte nicht berechnet werden. Bitte Adressen überprüfen. Fehler: " + status);
+        }
+      });
     });
   }
 
