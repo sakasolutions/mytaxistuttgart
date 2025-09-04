@@ -165,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const preis = grundpreis + km * (nacht ? kmPreisNacht : kmPreisTag);
 
           document.getElementById("distanz").textContent = `${km.toFixed(1)} km (${route.duration.text})`;
-          document.getElementById("tarif").textContent = nacht ? "Nacht-/Feiertagstarif (Beispiel)" : "Tagestarif (Beispiel)";
+          document.getElementById("tarif").textContent = nacht ? "Nacht-/Feiertagstarif" : "Tagestarif";
           document.getElementById("preis").textContent = `${preis.toFixed(2)} €`;
 
           const box = document.getElementById("ergebnis");
