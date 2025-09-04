@@ -330,3 +330,38 @@ body > main > section:first-of-type {
   opacity: 1;
   transform: translateY(0);
 }
+
+
+/* --- STYLING FÜR GOOGLE AUTOCOMPLETE DROPDOWN --- */
+.pac-container {
+  background-color: #333; /* Dunkler Hintergrund */
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  border: 1px solid #555;
+  z-index: 1200 !important; /* Stellt sicher, dass es über allem liegt */
+}
+
+.pac-item {
+  padding: 10px;
+  font-family: var(--font-secondary);
+  font-size: 1rem;
+  color: #f0f0f0; /* Hellerer Text */
+  cursor: pointer;
+  border-top: 1px solid #555;
+}
+.pac-item:first-child {
+  border-top: none;
+}
+
+.pac-item:hover, .pac-item-selected {
+  background-color: var(--primary-color);
+  color: var(--text-dark); /* Dunkler Text auf gelbem Grund */
+}
+
+.pac-item-query {
+  font-weight: 600;
+  color: #fff; /* Weißer Text für den getippten Teil */
+}
+.pac-item:hover .pac-item-query, .pac-item-selected .pac-item-query {
+  color: var(--text-dark);
+}
